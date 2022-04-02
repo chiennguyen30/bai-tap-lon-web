@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./css/formDNhap.css">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNOwA5ytH5rS_C8AC2UKfCnglwN_WZlx9Nzw&usqp=CAU" type="image/x-icon" />
+	<title></title>
+</head>
+<body>
+	<img src="./img/backgroud.jpg" alt="">
+	<div class="main">
+		<form action="" method="POST" class="form" id="form-1">
+			<h2 class="heading">Thành viên đăng ký</h2>
+			<p class="desc">chào mừng các bạn đã đến với shop</p>
+
+			<div class="spacer"></div>
+
+			<div class="form-group invalid">
+                <label for="fullname" class=" form-label">Tên đầy đủ</label> <br>
+                <input id="fullname" name="fullname" type="text" placeholder=" VD: nguyen chien">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label><br>
+                <input id="email" name="email" type="text" placeholder=" VD: email@domain.com">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">Mật khẩu</label><br>
+                <input id="password" name="password" type="password" placeholder=" Nhập mật khấu">
+                <span class="form-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password_confirmation" class="form-label">Nhập lại mật khấu</label><br>
+                <input id="password_confirmation" name="password_confirmation" type="password" placeholder=" Nhập lại mật khấu">
+                <span class="form-message"></span>
+            </div>
+
+            <button class="form-submit"><a href="../index.html" target="_blank">Đăng ký</a></button>
+		</form>
+	</div>
+	<script src="./js/validator.js"></script>
+    <script>
+
+        //mong muống của chung ta
+        Validator({
+             form: '#form-1',
+             errorSelector: '.form-message',
+             rules: [
+                 Validator.isRequired ('#fullname', 'Vui lòng nhập tên đầy đủ'),
+                 Validator.isEmail('#email'),
+                 Validator.minLength ('#password' ,6),
+                 Validator.isRequired ('#password_confirmation' ),
+                 Validator.isConfirmed('#password_confirmation', function () {
+                    return document.querySelector('#form-1 #password').value;
+                 }, 'Mật khẩu nhập lại không chính xác')
+                ],
+                onSubmit: function (data) {
+                    console.log(data);
+                }
+            });
+
+    </script>
+</body>
+</html>
